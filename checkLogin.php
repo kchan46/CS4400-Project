@@ -16,7 +16,7 @@ $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username'", $conn) o
 
   if (mysql_num_rows($query) == 0)
   {
-        header("Location:http://localhost/NoUserExists.php");
+        header("Location:http://localhost:81/NoUserExists.php");
         exit;
   }
 
