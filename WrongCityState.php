@@ -1,7 +1,14 @@
-<h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>New User Registration</strong></span></h1>
+
+
+
+
+
+<?php
+include 'connect.php';
+ ?>
+
+<h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>New User Registration</strong></span></h1> <!-- Text input-->
 <h2 style="text-align: center;"><img src="http://www.news.gatech.edu/sites/default/files/styles/740_x_scale/public/uploads/mercury_images/ta_dah_buzz_2_buld_copy_copy_1.jpg?itok=5OSOMKEo" alt="" width="118" height="139" /></h2>
-<p style="text-align: center;">&nbsp;</p>
-<p style="text-align: center;">&nbsp;</p>
 
 <h2 style="text-align: center;"><span style="color: #ff0000;"><strong>Wrong City/State combination!</strong></span></h2>
 <form action="checkRegister.php" method="POST">
@@ -23,9 +30,14 @@
     </div>
     <!-- Select Basic -->
 
-</form>
 
-<script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'>
+
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+
+
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+<script type='text/javascript'>//<![CDATA[
 $(document).ready(function() {
    $('#City').hide();
    $('#State').hide();
@@ -36,61 +48,69 @@ $(document).ready(function() {
            $('#State').show();
            $('#Title').show();
        }
-        else ($('#UserType option:selected').text() == "City Scientist") {
+        else if ($('#UserType option:selected').text() == "City Scientist") {
              $('#City').hide();
              $('#State').hide();
               $('#Title').hide();
+        } else {
+            $('#City').hide();
+            $('#State').hide();
+            $('#Title').hide();
         }
    });
 });
+//]]>
 </script>
 
+
 <select name="UserType" id="UserType">
-    <option value="City Scientist">City Scientist</option>
-    <option value="City Official">City Official<option>
+<option value="City Scientist">City Scientist</option>
+<option value="City Official">City Official<option>
 </select>
 
 <div id="City">
-    <select name="City">
-        <?php
+<select name="City">
+    <?php
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT City, State FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT City FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"City\">';
                 while ($result = mysql_fetch_array($query)) {
-                    echo '<option value=\"City\">'.$result['City'] . '</option>';
+                    echo '<option value="'.$result['City'].'">'.$result['City'] . '</option>';
                 }
             }
         ?>
-        <option value="City">Enter query to get cities</option>
-    </select>
-</div><br>
+<option value="City">Enter query to get cities</option>
+</select>
+</div>
 
 <div id="State">
-    <select name="State">
-        <?php
+<select name="State">
+    <?php
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT City, State FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT State FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"State\">';
                 while ($result = mysql_fetch_array($query)) {
-                    echo '<option value=\"State\">'.$result['State'] . '</option>';
+                    echo '<option value="'.$result['State'].'">'.$result['State'] . '</option>';
                 }
             }
         ?>
-        <option value="State">Enter query to get states</option>
-    </select>
-</div><br>
+<option value="State">Enter query to get states</option>
+</select>
+</div>
 
 <div id="Title"
   First name:<br>
   <input type="text" name="Title" placeholder="Title">
 </form>
 </div>
+
+
 
 
 
