@@ -4,7 +4,7 @@ include 'connect.php';
 
 <h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>New User Registration</strong></span></h1> <!-- Text input-->
 <h2 style="text-align: center;"><img src="http://www.news.gatech.edu/sites/default/files/styles/740_x_scale/public/uploads/mercury_images/ta_dah_buzz_2_buld_copy_copy_1.jpg?itok=5OSOMKEo" alt="" width="118" height="139" /></h2>
-<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>Email already exists!</strong></span></h2>
+<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>You must choose City Scientist or City Official!</strong></span></h2>
 <form action="checkRegister.php" method="POST">
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Username">Username</label>
     <div class="col-md-4"><input id="Username" class="form-control input-md" name="Username" required="" type="text" placeholder="" /></div>

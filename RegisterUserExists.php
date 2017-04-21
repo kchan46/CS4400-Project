@@ -1,12 +1,10 @@
 <?php
-
 include 'connect.php';
-
  ?>
 
 <h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>New User Registration</strong></span></h1> <!-- Text input-->
 <h2 style="text-align: center;"><img src="http://www.news.gatech.edu/sites/default/files/styles/740_x_scale/public/uploads/mercury_images/ta_dah_buzz_2_buld_copy_copy_1.jpg?itok=5OSOMKEo" alt="" width="118" height="139" /></h2>
-<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>User already exists.</strong></span></h2>
+<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>User already exists!</strong></span></h2>
 <form action="checkRegister.php" method="POST">
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Username">Username</label>
     <div class="col-md-4"><input id="Username" class="form-control input-md" name="Username" required="" type="text" placeholder="" /></div>
@@ -25,48 +23,91 @@ include 'connect.php';
     <br
     </div>
     <!-- Select Basic -->
-    <center>
-<select id="opts" onchange="showForm()">
-   <option value="0">City Scientists</option>
-   <option value="1">City Officials</option>
 
+
+
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+
+
+<script type='text/javascript' src='http://code.jquery.com/jquery-1.5.2.js'></script>
+<script type='text/javascript'>//<![CDATA[
+$(document).ready(function() {
+   $('#City').hide();
+   $('#State').hide();
+     $('#Title').hide();
+    $('#UserType').change(function () {
+       if ($('#UserType option:selected').text() == "City Official"){
+           $('#City').show();
+           $('#State').show();
+           $('#Title').show();
+       }
+        else if ($('#UserType option:selected').text() == "City Scientist") {
+             $('#City').hide();
+             $('#State').hide();
+              $('#Title').hide();
+        } else {
+            $('#City').hide();
+            $('#State').hide();
+            $('#Title').hide();
+        }
+   });
+});
+//]]>
+</script>
+
+
+<select name="UserType" id="UserType">
+<option value="City Scientist">City Scientist</option>
+<option value="City Official">City Official<option>
 </select>
 
-<div id="f1" style="display:none">
-   <form name="form1">
-       <select id="opts" onchange="showForm()">
+<div id="City">
+<select name="City">
+    <?php
+        include 'connect.php';
+        //trying to populate dropdown of cities and states
+        mysql_select_db("cs4400_62", $conn);
+        $query = mysql_query("SELECT DISTINCT City FROM `CITYSTATE`", $conn);
+            if (mysql_num_rows($query)) {
+                $select= '<select name=\"City\">';
+                while ($result = mysql_fetch_array($query)) {
+                    echo '<option value="'.$result['City'].'">'.$result['City'] . '</option>';
+                }
+            }
+        ?>
 
-           <option value="0">Enter query here to get all cities</option>
-
-
-       </select>
-   </form>
+</select>
 </div>
 
-<div id="f2" style="display:none">
-   <form name="form2">
-       <select id="opts" onchange="showForm()">
+<div id="State">
+<select name="State">
+    <?php
+        include 'connect.php';
+        //trying to populate dropdown of cities and states
+        mysql_select_db("cs4400_62", $conn);
+        $query = mysql_query("SELECT DISTINCT State FROM `CITYSTATE`", $conn);
+            if (mysql_num_rows($query)) {
+                $select= '<select name=\"State\">';
+                while ($result = mysql_fetch_array($query)) {
+                    echo '<option value="'.$result['State'].'">'.$result['State'] . '</option>';
+                }
+            }
+        ?>
 
-           <option value="0">Enter query here to get all states</option>
-
-
-       </select>
-   </form>
+</select>
 </div>
 
-<script type="text/javascript">
-   function showForm() {
-       var selopt = document.getElementById("opts").value;
-       if (selopt == 1) {
-           document.getElementById("f1").style.display = "block";
-           document.getElementById("f2").style.display = "block";
-       }
-       if (selopt == 0) {
-           document.getElementById("f1").style.display = "none";
-           document.getElementById("f2").style.display = "none";
-       }
+<div id="Title"
+  First name:<br>
+  <input type="text" name="Title" placeholder="Title">
+</form>
+</div>
 
-   }
-</script>
+
+
+
+
 <p style="text-align: center;"><input type="submit" value="Create" /> </p>
+
 </form>

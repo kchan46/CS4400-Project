@@ -20,7 +20,7 @@ include 'connect.php';
     <!-- Password input-->
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="ConfirmPassword">Confirm Password</label>
     <div class="col-md-4"><input id="ConfirmPassword" class="form-control input-md" name="ConfirmPassword" required="" type="password" placeholder="" /></div>
-    <br>
+    <br
     </div>
     <!-- Select Basic -->
 
@@ -56,7 +56,7 @@ $(document).ready(function() {
 //]]>
 </script>
 
-<center>
+
 <select name="UserType" id="UserType">
 <option value="City Scientist">City Scientist</option>
 <option value="City Official">City Official<option>
@@ -68,7 +68,7 @@ $(document).ready(function() {
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT City FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT DISTINCT City FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"City\">';
                 while ($result = mysql_fetch_array($query)) {
@@ -76,7 +76,7 @@ $(document).ready(function() {
                 }
             }
         ?>
-<option value="City">Enter query to get cities</option>
+
 </select>
 </div>
 
@@ -86,7 +86,7 @@ $(document).ready(function() {
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT State FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT DISTINCT State FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"State\">';
                 while ($result = mysql_fetch_array($query)) {
@@ -94,7 +94,7 @@ $(document).ready(function() {
                 }
             }
         ?>
-<option value="State">Enter query to get states</option>
+
 </select>
 </div>
 
@@ -103,6 +103,10 @@ $(document).ready(function() {
   <input type="text" name="Title" placeholder="Title">
 </form>
 </div>
+
+
+
+
 
 <p style="text-align: center;"><input type="submit" value="Create" /> </p>
 

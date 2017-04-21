@@ -1,16 +1,13 @@
 
 
 
-
-
 <?php
 include 'connect.php';
  ?>
 
 <h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>New User Registration</strong></span></h1> <!-- Text input-->
 <h2 style="text-align: center;"><img src="http://www.news.gatech.edu/sites/default/files/styles/740_x_scale/public/uploads/mercury_images/ta_dah_buzz_2_buld_copy_copy_1.jpg?itok=5OSOMKEo" alt="" width="118" height="139" /></h2>
-
-<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>Wrong City/State combination!</strong></span></h2>
+<h2 style="text-align: center;"><span style="color: #ff0000;"><strong>Wrong City/State Combination!</strong></span></h2>
 <form action="checkRegister.php" method="POST">
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Username">Username</label>
     <div class="col-md-4"><input id="Username" class="form-control input-md" name="Username" required="" type="text" placeholder="" /></div>
@@ -74,7 +71,7 @@ $(document).ready(function() {
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT City FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT DISTINCT City FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"City\">';
                 while ($result = mysql_fetch_array($query)) {
@@ -82,7 +79,7 @@ $(document).ready(function() {
                 }
             }
         ?>
-<option value="City">Enter query to get cities</option>
+
 </select>
 </div>
 
@@ -92,7 +89,7 @@ $(document).ready(function() {
         include 'connect.php';
         //trying to populate dropdown of cities and states
         mysql_select_db("cs4400_62", $conn);
-        $query = mysql_query("SELECT State FROM `CITYSTATE`", $conn);
+        $query = mysql_query("SELECT DISTINCT State FROM `CITYSTATE`", $conn);
             if (mysql_num_rows($query)) {
                 $select= '<select name=\"State\">';
                 while ($result = mysql_fetch_array($query)) {
@@ -100,7 +97,7 @@ $(document).ready(function() {
                 }
             }
         ?>
-<option value="State">Enter query to get states</option>
+
 </select>
 </div>
 

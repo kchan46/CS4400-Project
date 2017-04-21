@@ -44,7 +44,7 @@ $query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or 
         $query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
          header("Location:http://localhost/AddDataPoint.php");
          exit;
-    } else {
+    } else if ($UserType == "City Official"){
         mysql_select_db("cs4400_62", $conn);
         $sql = mysql_query("SELECT * FROM `CITYSTATE` WHERE City='$City' AND State='$State'", $conn);
 
@@ -54,10 +54,13 @@ $query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or 
             header("Location:http://localhost/CityOfficial.php");
             exit;
         } else {
-            
+
              header("Location:http://localhost/WrongCityState.php");
             exit;
         }
+    } else {
+        header("Location:http://localhost/Empty.php");
+       exit;
     }
 
  ?>
