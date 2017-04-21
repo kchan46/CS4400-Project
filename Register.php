@@ -23,7 +23,7 @@ include 'connect.php';
     <!-- Password input-->
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="ConfirmPassword">Confirm Password</label>
     <div class="col-md-4"><input id="ConfirmPassword" class="form-control input-md" name="ConfirmPassword" required="" type="password" placeholder="" /></div>
-    <br
+    <br>
     </div>
     <!-- Select Basic -->
 
@@ -95,8 +95,6 @@ $(document).ready(function() {
   <input type="text" name="Title" placeholder="Title">
 </form>
 </div>
-
-
 
 <p style="text-align: center;"><input type="submit" value="Create" /> </p>
 
