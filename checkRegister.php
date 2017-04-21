@@ -35,28 +35,23 @@ $query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or 
           exit;
     }
 
-//trying to populate dropdown of cities and states
-mysql_select_db("cs4400_62", $conn);
-$query = mysql_query("SELECT City, State FROM `CITYSTATE`", $conn);
-    if (mysql_num_rows($sql)) {
-        $select= '<select name="UserType">';
-        while ($result = mysql_fetch_array($query)) {
-            echo '<option value="'.$result['City'].'">'.$result['State'].'</option>';
-        }
-        echo "</select>";
-    }
-
 //insert user into User Table and City Official Table
 mysql_select_db("cs4400_62", $conn);
-$query = mysql_query("INSERT INTO `USER`(`Username`, `Email`, `Password`, `User Type`) VALUES ('$Username', '$Email', '$Password', '$UserType')". $conn) or trigger_error(mysql_error()." ".$query);
+$query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
 
     if ($UserType == "City Scientist") {
          header("Location:http://localhost/AddDataPoint.php");
          exit;
     } else {
-        $query = mysql_query("INSERT INTO `CITYOFFICAL`(`Username`, `Title`, `Approved`, `CS_City`, `CS_State`) VALUES ('$Username', '$Title', '$City', '$State')". $conn) or trigger_error(mysql_error()." ".$query);
-        header("Location:http://localhost/CityOfficial.php");
-        exit;
+        $sql = mysql_query("SELECT * FROM `CITYSTATE` WHERE City='$City' AND State='$State'", $conn);
+        if (mysql_num_rows($sql) > 0) {
+            $query = mysql_query("INSERT INTO `CITYOFFICAL`(`Username`, `Title`, `Approved`, `CS_City`, `CS_State`) VALUES ('$Username', '$Title', '$City', '$State')". $conn) or trigger_error(mysql_error()." ".$query);
+            header("Location:http://localhost/CityOfficial.php");
+            exit;
+        } else {
+            header("Location:http://localhost/WrongCityState.php");
+            exit;
+        }
     }
 
  ?>
