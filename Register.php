@@ -56,7 +56,7 @@ $(document).ready(function() {
 //]]>
 </script>
 
-
+<center>
 <select name="UserType" id="UserType">
 <option value="City Scientist">City Scientist</option>
 <option value="City Official">City Official<option>
@@ -104,13 +104,6 @@ $(document).ready(function() {
 </form>
 </div>
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 68969150f5fc733fe234ad7d4bf5b9c4f425985a
 <p style="text-align: center;"><input type="submit" value="Create" /> </p>
 
 </form>
