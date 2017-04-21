@@ -10,6 +10,7 @@ $Password = $_POST['Password'];
 $ConfirmPassword = $_POST['ConfirmPassword'];
 $UserType = $_POST['UserType'];
 $City = $_POST['City'];
+
 $State = $_POST['State'];
 $Title = $_POST['Title'];
 
@@ -35,21 +36,26 @@ $query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or 
           exit;
     }
 
-//insert user into User Table and City Official Table
-mysql_select_db("cs4400_62", $conn);
-$query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
+//insert user into User Table and City Official Table if user is city Official
+//insert into just user table if user is city scientist
 
     if ($UserType == "City Scientist") {
+        mysql_select_db("cs4400_62", $conn);
+        $query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
          header("Location:http://localhost/AddDataPoint.php");
          exit;
     } else {
+        mysql_select_db("cs4400_62", $conn);
         $sql = mysql_query("SELECT * FROM `CITYSTATE` WHERE City='$City' AND State='$State'", $conn);
+
         if (mysql_num_rows($sql) > 0) {
+            $query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
             $query = mysql_query("INSERT INTO `CITYOFFICAL`(`Username`, `Title`, `Approved`, `CS_City`, `CS_State`) VALUES ('$Username', '$Title', '$City', '$State')". $conn) or trigger_error(mysql_error()." ".$query);
             header("Location:http://localhost/CityOfficial.php");
             exit;
         } else {
-            header("Location:http://localhost/WrongCityState.php");
+            
+             header("Location:http://localhost/WrongCityState.php");
             exit;
         }
     }
