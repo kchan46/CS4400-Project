@@ -125,6 +125,7 @@ $DateFlagged = $_POST['DateFlagged'];
                         <td><?php echo $rows['DateFlagged']; ?></td>
                         <td align="center"><form action="ViewOnePoi.php" method="POST">
                             <p style="text-align: center;"><input type="submit" value="View" /> </p>
+                            <?php echo '<input type="hidden" name="Location" value="' . $Location . '"/>'; ?>
                         </form></td>
                         </tr>
                         <?php

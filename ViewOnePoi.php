@@ -1,6 +1,8 @@
 <?php
 include 'connect.php';
 
+$Location = $_POST['Location'];
+echo $Location;
  ?>
 
  <head>
@@ -57,9 +59,9 @@ include 'connect.php';
             <option value="Choose Here">Choose here</option>
                 <?php
                 include 'connect.php';
-                echo 'location: ' $Location;
+                //echo 'location: ' $Location;
                 mysql_select_db("cs4400_62", $conn);
-                $query = mysql_query("SELECT DISTINCT DATETIME FROM `DATAPOINT` WHERE POI_LOCATION='$Location'", $conn);
+                $query = mysql_query("SELECT DISTINCT DATETIME FROM `POI` NATURAL JOIN `DATAPOINT` WHERE POI_LOCATION='$Location'", $conn);
                     if (mysql_num_rows($query)) {
                         $select= '<select name=\"DATETIME\">';
                         while ($result = mysql_fetch_array($query)) {
@@ -77,4 +79,5 @@ include 'connect.php';
 
 <form action="ShowOnePoiTable.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="Reset Filter" /> </p>
+    <?php echo '<input type="hidden" name="Location" value="' . $Location . '"/>'; ?>
 </form>

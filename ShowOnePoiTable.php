@@ -5,6 +5,9 @@ $Type= $_POST['Type'];
 $DataValueMin = $_POST['DataValueMin'];
 $DataValueMax = $_POST['DataValueMax'];
 $DateFlagged = $_POST['DATETIME'];
+$Location = $_POST['Location'];
+
+echo $Location;
  ?>
 
 <!DOCTYPE html>
@@ -36,7 +39,7 @@ $DateFlagged = $_POST['DATETIME'];
                     // echo $Location;
                     //
                     // echo $City;
-                    $sql = "SELECT * FROM `DATAPOINT`";
+                    $sql = "SELECT * FROM `POI` NATURAL JOIN `DATAPOINT` WHERE POI_LOCATION='$Location'";
 
                     if ($Type != "Choose Here") { //if selected
                         if ($Type == "1") {
@@ -46,7 +49,7 @@ $DateFlagged = $_POST['DATETIME'];
                         }
                         if ($first) {
                             $first = False;
-                            $sql .= " WHERE DATA_TYPE='$Type'";
+                            $sql .= " AND DATA_TYPE='$Type'";
                         } else {
                             $sql .= " AND DATA_TYPE='$Type'";
                         }
@@ -55,7 +58,7 @@ $DateFlagged = $_POST['DATETIME'];
                     if ($DataValueMin != "" && $DataValueMax != "") { //if selected
                         if ($first) {
                             $first = False;
-                            $sql .= " WHERE Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax' ";
+                            $sql .= " AND Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax' ";
                         } else {
                             $sql .= " AND Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax'";
                         }
@@ -64,7 +67,7 @@ $DateFlagged = $_POST['DATETIME'];
                     if ($DateFlagged != "Choose Here") { //if selected
                         if ($first) {
                             $first = False;
-                            $sql .= " WHERE DATETIME='$DateFlagged'";
+                            $sql .= " AND DATETIME='$DateFlagged'";
                         } else {
                             $sql .= " AND DATETIME='$DateFlagged'";
                         }
