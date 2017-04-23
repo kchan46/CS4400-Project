@@ -29,8 +29,7 @@ $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username'", $conn) o
     }
 
 mysql_select_db("cs4400_62", $conn);
-$query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or trigger_error(mysql_error()." ".$query);
-
+$query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email' AND Email LIKE '%_@__%.__%'", $conn) or trigger_error(mysql_error()." ".$query);
     if (mysql_num_rows($query) != 0) {
           header("Location:http://localhost/RegisterEmailExists.php");
           exit;
