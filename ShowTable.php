@@ -1,7 +1,15 @@
 <?php
 include 'connect.php';
 
+$Location= $_POST['Location'];
+$City = $_POST['City'];
+$State = $_POST['State'];
+$Zipcode = $_POST['Zipcode'];
+$Flagged = $_POST['Flagged'];
+$DateFlagged = $_POST['DateFlagged'];
  ?>
+
+
 <form action="ShowTable.php" method="POST">
 <h2 style="text-align: center;"><span style="color: #0000ff;"><strong>View POIs</strong></span></h2>
 
@@ -132,6 +140,7 @@ include 'connect.php';
                                                 <th>Zip Code</th>
                                                 <th>Flagged?</th>
                                                 <th>Date Flagged</th>
+                                                <th>View POI</th>
                                             </tr>
                                         </thead>
                                         <tbody  id="myTable">
@@ -139,14 +148,22 @@ include 'connect.php';
                                                 <?php
                                                 include "connect.php";
                                                 mysql_select_db("cs4400_62", $conn);
-                                                $sql = "SELECT * FROM `POI`";
-                    $result = mysql_query($sql, $conn);
-                                if($result > 0){
+
+                                                $result = mysql_query("SELECT * FROM `POI` WHERE Location='$Location' AND CS_City='$City'", $conn);
+                                if(mysql_num_rows($result) > 0){
                                     // output data of each row
                                     while($rows = mysql_fetch_array($result)){ ?>
                                         <tr>
 
-
+                                            <td><?php echo $rows['Location']; ?></td>
+                                            <td><?php echo $rows['CS_City']; ?></td>
+                                            <td><?php echo $rows['CS_State']; ?></td>
+                                            <td><?php echo $rows['Zipcode']; ?></td>
+                                            <td><?php echo $rows['Flag']; ?></td>
+                                            <td><?php echo $rows['DateFlagged']; ?></td>
+                                            <td align="center"><form action="ViewOnePoi.php" method="POST">
+                                                <p style="text-align: center;"><input type="submit" value="View" /> </p>
+                                            </form></td>
                                         </tr>
                                         <?php
                                     }
