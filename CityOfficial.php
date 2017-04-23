@@ -5,9 +5,9 @@
 
 <h2 style="text-align: center;"><span style="color: #00FF00;"><strong>Choose Functionality.</strong></span></h2>
 
-<!-- <form action="checkLogin.php" method="POST"> -->
+<form action="ViewPoi.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="Filter/Search POI" /> </p>
-<!-- </form> -->
+</form>
 
 <!-- <form action="Register.php" method="POST"> -->
     <p style="text-align: center;"><input type="submit" value="POI Report" /> </p>

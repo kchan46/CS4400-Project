@@ -112,68 +112,6 @@ $DateFlagged = $_POST['DateFlagged'];
 
                     echo "SQL: $sql\n";
 
-                    // if ($Location != "Choose Here") { //if selected
-                    //     echo $first;
-                    //     if ($first) {
-                    //         $first = False; //found our first filter
-                    //         $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
-                    //         echo "Location value: $Location \n";
-                    //         echo "SQL: $sql";
-                    //         echo "yooo";
-                    //     } else {
-                    //         $sql .= " AND Location='$Location'";
-                    //         echo "Location value: $Location";
-                    //     }
-                    // } else {
-                    //     $sql = "SELECT * FROM `POI`";
-                    // }
-                    //
-                    // if ($City != "Choose Here") { //if selected
-                    //     if ($first) {
-                    //         $first = False; //found our first filter
-                    //         $sql = "SELECT * FROM `POI` WHERE CS_City='$City' ";
-                    //         echo "omg kms";
-                    //     } else {
-                    //         $sql .= " AND CS_City='$City'";
-                    //         echo "huehuehue";
-                    //     }
-                    // } else {
-                    //     // echo "duck";
-                    // }
-                    //
-                    // if ($State != "Choose Here") { //if selected
-                    //     if ($first) {
-                    //         $first = False; //found our first filter
-                    //         $sql = "SELECT * FROM `POI` WHERE CS_State='$State'";
-                    //     } else {
-                    //         $sql .= " AND CS_State='$State'";
-                    //     }
-                    // } else {
-                    //     // echo "duck";
-                    // }
-                    //
-                    // if ($Zipcode != "Choose Here") { //if selected
-                    //     if ($first) {
-                    //         $first = False; //found our first filter
-                    //         $sql = "SELECT * FROM `POI` WHERE Zipcode='$Zipcode'";
-                    //     } else {
-                    //         $sql .= " AND Zipcode='$Zipcode'";
-                    //     }
-                    // }
-                    //
-                    // if ($Flagged != "Choose Here") { //if selected
-                    //     if ($first) {
-                    //         $first = False; //found our first filter
-                    //         $sql = "SELECT * FROM `POI` WHERE Flag='$Flagged'";
-                    //     } else {
-                    //         $sql .= " AND Flag='$Flagged'";
-                    //     }
-                    // } else {
-                    //     // echo "duck";
-                    // }
-
-                    //ADD DATE FILTER
-
                     $result = mysql_query($sql, $conn) or trigger_error(mysql_error()." ".$query);
                     if (mysql_num_rows($result) > 0){
                     // output data of each row
