@@ -9,121 +9,6 @@ $Flagged = $_POST['Flagged'];
 $DateFlagged = $_POST['DateFlagged'];
  ?>
 
-
-<form action="ShowTable.php" method="POST">
-<h2 style="text-align: center;"><span style="color: #0000ff;"><strong>View POIs</strong></span></h2>
-
-
-<center>
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Location">POI Location Name: </label>
-        <select name="Location">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT Location FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"Location\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"Location\">'.$result['Location'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="Location"></option>
-        </select>
-    </div><br>
-
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="CS_City">City: </label>
-        <select name="CS_City">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT CS_City FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"CS_City\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"CS_City\">'.$result['CS_City'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="CS_City"></option>
-        </select>
-    </div><br>
-
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="CS_State">State: </label>
-        <select name="CS_State">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT CS_State FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"CS_State\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"CS_State\">'.$result['CS_State'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="CS_State"></option>
-        </select>
-    </div><br>
-
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Zipcode">Zipcode: </label>
-        <select name="Zipcode">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT Zipcode FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"Zipcode\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"Zipcode\">'.$result['Zipcode'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="Zipcode"></option>
-        </select>
-    </div><br>
-
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Flagged">Flagged? </label>
-        <select name="Flagged">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT Flagged FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"Flagged\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"Flagged\">'.$result['Flagged'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="Flagged"></option>
-        </select>
-    </div><br>
-
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="DateFlagged">Date Flagged? </label>
-        <select name="DateFlagged">
-            <?php
-            include 'connect.php';
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT DateFlagged FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"DateFlagged\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"DateFlagged\">'.$result['DateFlagged'] . '</option>';
-                    }
-                }
-            ?>
-            <option selected enabled>Choose here</option>
-            <option value="DateFlagged"></option>
-        </select>
-    </div><br>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -170,7 +55,7 @@ $DateFlagged = $_POST['DateFlagged'];
                     if ($City != "Choose Here") { //if selected
                         if ($first) {
                             $first = False; //found our first filter
-                            $sql .= " WHERE CS_City='$City'";
+                            $sql .= "SELECT * FROM `POI` WHERE CS_City='$City'";
                             echo "omg kms";
                         } else {
                             $sql .= " AND CS_City='$City'";
@@ -183,7 +68,7 @@ $DateFlagged = $_POST['DateFlagged'];
                     if ($State != "Choose Here") { //if selected
                         if ($first) {
                             $first = False; //found our first filter
-                            $sql .= " WHERE CS_State='$State'";
+                            $sql .= "SELECT * FROM `POI` WHERE CS_State='$State'";
                         } else {
                             $sql .= " AND CS_State='$State'";
                         }
@@ -194,7 +79,7 @@ $DateFlagged = $_POST['DateFlagged'];
                     if ($Zipcode != "Choose Here") { //if selected
                         if ($first) {
                             $first = False; //found our first filter
-                            $sql .= " WHERE Zipcode='$Zipcode'";
+                            $sql .= "SELECT * FROM `POI` WHERE Zipcode='$Zipcode'";
                         } else {
                             $sql .= " AND Zipcode='$Zipcode'";
                         }
@@ -203,7 +88,7 @@ $DateFlagged = $_POST['DateFlagged'];
                     if ($Flagged != "Choose Here") { //if selected
                         if ($first) {
                             $first = False; //found our first filter
-                            $sql .= " WHERE Flag='$Flagged'";
+                            $sql .= "SELECT * FROM `POI` WHERE Flag='$Flagged'";
                         } else {
                             $sql .= " AND Flag='$Flagged'";
                         }
@@ -241,9 +126,6 @@ $DateFlagged = $_POST['DateFlagged'];
 
 </body>
 </html>
-
-    <p style="text-align: center;"><input type="submit" value="Apply Filter" /> </p>
-</form>
 
 <form action="ViewPoi.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="Reset Filter" /> </p>
