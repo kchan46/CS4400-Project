@@ -5,7 +5,7 @@ $Location= $_POST['Location'];
 $City = $_POST['CS_City'];
 $State = $_POST['CS_State'];
 $Zipcode = $_POST['Zipcode'];
-$Flagged = $_POST['Flagged'];
+$Flagged = $_POST['Flag'];
 $DateFlagged = $_POST['DateFlagged'];
  ?>
 
@@ -36,65 +36,141 @@ $DateFlagged = $_POST['DateFlagged'];
                     include "connect.php";
                     mysql_select_db("cs4400_62", $conn);
                     $first = True;
-                    $sql = "";
-                    //$sql = "SELECT * FROM `POI` ";
+                    // $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
+
+                    // $sql = "SELECT * FROM `POI` WHERE Location='$Location' AND CS_City='$City'";
+                    // echo $Location;
+                    //
+                    // echo $City;
+                    $sql = "SELECT * FROM `POI`";
 
                     if ($Location != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "Location: $Location\n";
                         if ($first) {
-                            $first = False; //found our first filter
-                            $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
-                            echo "Hello world!<br>";
+                            $first = False;
+                            $sql .= " WHERE Location='$Location'";
                         } else {
                             $sql .= " AND Location='$Location'";
-                            echo "Bye world!<br>";
                         }
-                    } else {
-                        echo "Ugle world!<br>";
                     }
 
                     if ($City != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "City: $City\n";
                         if ($first) {
-                            $first = False; //found our first filter
-                            $sql .= "SELECT * FROM `POI` WHERE CS_City='$City'";
-                            echo "omg kms";
+                            $first = False;
+                            $sql .= " WHERE CS_City='$City'";
                         } else {
                             $sql .= " AND CS_City='$City'";
-                            echo "huehuehue";
                         }
-                    } else {
-                        echo "duck";
                     }
 
                     if ($State != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "State: $State\n";
                         if ($first) {
-                            $first = False; //found our first filter
-                            $sql .= "SELECT * FROM `POI` WHERE CS_State='$State'";
+                            $first = False;
+                            $sql .= " WHERE CS_State='$State'";
                         } else {
                             $sql .= " AND CS_State='$State'";
                         }
-                    } else {
-                        echo "duck";
                     }
 
                     if ($Zipcode != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "Zipcode: $Zipcode\n";
                         if ($first) {
-                            $first = False; //found our first filter
-                            $sql .= "SELECT * FROM `POI` WHERE Zipcode='$Zipcode'";
+                            $first = False;
+                            $sql .= " WHERE Zipcode='$Zipcode'";
                         } else {
                             $sql .= " AND Zipcode='$Zipcode'";
                         }
                     }
 
                     if ($Flagged != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "Flagged: $Flagged\n";
                         if ($first) {
-                            $first = False; //found our first filter
-                            $sql .= "SELECT * FROM `POI` WHERE Flag='$Flagged'";
+                            $first = False;
+                            $sql .= " WHERE Flag='$Flagged'";
                         } else {
                             $sql .= " AND Flag='$Flagged'";
                         }
-                    } else {
-                        echo "duck";
                     }
+
+                    if ($DateFlagged != "Choose Here") { //if selected
+                        echo "first: $first\n";
+                        echo "DateFlagged: $DateFlagged\n";
+                        if ($first) {
+                            $first = False;
+                            $sql .= " WHERE DateFlagged='$DateFlagged'";
+                        } else {
+                            $sql .= " AND DateFlagged='$DateFlagged'";
+                        }
+                    }
+
+                    echo "SQL: $sql\n";
+
+                    // if ($Location != "Choose Here") { //if selected
+                    //     echo $first;
+                    //     if ($first) {
+                    //         $first = False; //found our first filter
+                    //         $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
+                    //         echo "Location value: $Location \n";
+                    //         echo "SQL: $sql";
+                    //         echo "yooo";
+                    //     } else {
+                    //         $sql .= " AND Location='$Location'";
+                    //         echo "Location value: $Location";
+                    //     }
+                    // } else {
+                    //     $sql = "SELECT * FROM `POI`";
+                    // }
+                    //
+                    // if ($City != "Choose Here") { //if selected
+                    //     if ($first) {
+                    //         $first = False; //found our first filter
+                    //         $sql = "SELECT * FROM `POI` WHERE CS_City='$City' ";
+                    //         echo "omg kms";
+                    //     } else {
+                    //         $sql .= " AND CS_City='$City'";
+                    //         echo "huehuehue";
+                    //     }
+                    // } else {
+                    //     // echo "duck";
+                    // }
+                    //
+                    // if ($State != "Choose Here") { //if selected
+                    //     if ($first) {
+                    //         $first = False; //found our first filter
+                    //         $sql = "SELECT * FROM `POI` WHERE CS_State='$State'";
+                    //     } else {
+                    //         $sql .= " AND CS_State='$State'";
+                    //     }
+                    // } else {
+                    //     // echo "duck";
+                    // }
+                    //
+                    // if ($Zipcode != "Choose Here") { //if selected
+                    //     if ($first) {
+                    //         $first = False; //found our first filter
+                    //         $sql = "SELECT * FROM `POI` WHERE Zipcode='$Zipcode'";
+                    //     } else {
+                    //         $sql .= " AND Zipcode='$Zipcode'";
+                    //     }
+                    // }
+                    //
+                    // if ($Flagged != "Choose Here") { //if selected
+                    //     if ($first) {
+                    //         $first = False; //found our first filter
+                    //         $sql = "SELECT * FROM `POI` WHERE Flag='$Flagged'";
+                    //     } else {
+                    //         $sql .= " AND Flag='$Flagged'";
+                    //     }
+                    // } else {
+                    //     // echo "duck";
+                    // }
 
                     //ADD DATE FILTER
 

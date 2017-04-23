@@ -4,7 +4,7 @@ include 'connect.php';
 
 
 
-$Loaction = $_POST['POI'];
+$Location = $_POST['POI'];
 $Date = $_POST['Date'];
 $Time = $_POST['Time'];
 $DataType = $_POST['DataType'];
