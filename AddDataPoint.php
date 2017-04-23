@@ -34,6 +34,7 @@ include 'connect.php';
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="POI">POI Location Name: </label>
         <select name="POI">
+            <option value="Choose Here">Choose here</option>
             <?php
                 include 'connect.php';
                 //trying to populate dropdown of cities and states
@@ -46,7 +47,7 @@ include 'connect.php';
                         }
                     }
                 ?>
-            <option value="POI"></option>
+            <!-- <option value="POI"></option> -->
         </select>
         <a href="AddNewLocation.php">Add a new location</a>
     </div><br>
