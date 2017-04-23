@@ -1,7 +1,5 @@
 <?php
-
 include 'connect.php';
-
  ?>
 
  <head>
@@ -37,17 +35,17 @@ include 'connect.php';
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="POI">POI Location Name: </label>
         <select name="POI">
             <?php
-            include 'connect.php';
-            //trying to populate dropdown of cities and states
-            mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT Location FROM `POI`", $conn);
-                if (mysql_num_rows($query)) {
-                    $select= '<select name=\"POI\">';
-                    while ($result = mysql_fetch_array($query)) {
-                        echo '<option value=\"POI\">'.$result['Location'] . '</option>';
+                include 'connect.php';
+                //trying to populate dropdown of cities and states
+                mysql_select_db("cs4400_62", $conn);
+                $query = mysql_query("SELECT DISTINCT Location FROM `POI`", $conn);
+                    if (mysql_num_rows($query)) {
+                        $select= '<select name=\"Location\">';
+                        while ($result = mysql_fetch_array($query)) {
+                            echo '<option value="'.$result['Location'].'">'.$result['Location'] . '</option>';
+                        }
                     }
-                }
-            ?>
+                ?>
             <option value="POI"></option>
         </select>
         <a href="AddNewLocation.php">Add a new location</a>
@@ -55,7 +53,7 @@ include 'connect.php';
 
     <div class="form-group" style="text-align: center;">
         <p>Date of Reading: </p>
-        <input type="text" class="datepicker">
+        <input type="text" name="Date" class="datepicker">
         <p>Time of Reading: </p><div class="yo" style="text-align: center;"><input id="Time" class="form-control input-md" name="Time" required="" type="text" placeholder="hh-mm" /></div>
     </div><br>
 
@@ -68,7 +66,7 @@ include 'connect.php';
     <br>
 
     <div class="form-group" style="text-align: center;"><label class="control-label" for="DataValue">Data Value: </label>
-        <div class="yo" style="text-align: center;"><input id="DataValue" class="form-control input-md" name="DataValue" required="" type="text" placeholder="" /></div>
+        <div class="yo" style="text-align: center;"><input id="DataValue" class="form-control input-md" name="DataValue" required="" type="number" placeholder="" /></div>
     </div><br>
 
     </form>
