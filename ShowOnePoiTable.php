@@ -5,9 +5,8 @@ $Type= $_POST['Type'];
 $DataValueMin = $_POST['DataValueMin'];
 $DataValueMax = $_POST['DataValueMax'];
 $DateFlagged = $_POST['DATETIME'];
-$Location = $_POST['Location'];
+//$Location = $_POST['Location'];
 
-echo $Location;
  ?>
 
 <!DOCTYPE html>
@@ -39,7 +38,8 @@ echo $Location;
                     // echo $Location;
                     //
                     // echo $City;
-                    $sql = "SELECT * FROM `POI` NATURAL JOIN `DATAPOINT` WHERE POI_LOCATION='$Location'";
+                    // $sql = "SELECT * FROM `POI` NATURAL JOIN `DATAPOINT` WHERE POI_LOCATION='$Location'";
+                    $sql = "SELECT * FROM `POI` NATURAL JOIN `DATAPOINT`";
 
                     if ($Type != "Choose Here") { //if selected
                         if ($Type == "1") {
@@ -49,7 +49,7 @@ echo $Location;
                         }
                         if ($first) {
                             $first = False;
-                            $sql .= " AND DATA_TYPE='$Type'";
+                            $sql .= " WHERE DATA_TYPE='$Type'";
                         } else {
                             $sql .= " AND DATA_TYPE='$Type'";
                         }
@@ -58,7 +58,7 @@ echo $Location;
                     if ($DataValueMin != "" && $DataValueMax != "") { //if selected
                         if ($first) {
                             $first = False;
-                            $sql .= " AND Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax' ";
+                            $sql .= " WHERE Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax' ";
                         } else {
                             $sql .= " AND Data_Value BETWEEN '$DataValueMin' AND '$DataValueMax'";
                         }
@@ -67,13 +67,11 @@ echo $Location;
                     if ($DateFlagged != "Choose Here") { //if selected
                         if ($first) {
                             $first = False;
-                            $sql .= " AND DATETIME='$DateFlagged'";
+                            $sql .= " WHERE DATETIME='$DateFlagged'";
                         } else {
                             $sql .= " AND DATETIME='$DateFlagged'";
                         }
                     }
-
-                    echo "SQL: $sql\n";
 
                     $result = mysql_query($sql, $conn) or trigger_error(mysql_error()." ".$query);
                     if (mysql_num_rows($result) > 0){

@@ -2,8 +2,7 @@
 include 'connect.php';
 
 $Location = $_POST['Location'];
-echo $Location;
- ?>
+?>
 
  <head>
    <meta charset="utf-8">
@@ -77,7 +76,6 @@ echo $Location;
     <p style="text-align: center;"><input type="submit" value="Apply Filter" /> </p>
 </form>
 
-<form action="ShowOnePoiTable.php" method="POST">
+<form action="ViewOnePoi.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="Reset Filter" /> </p>
-    <?php echo '<input type="hidden" name="Location" value="' . $Location . '"/>'; ?>
 </form>

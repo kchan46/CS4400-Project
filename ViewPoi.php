@@ -48,7 +48,6 @@ include 'connect.php';
                     }
                 }
             ?>
-            <option value="Location"></option>
         </select>
     </div><br>
 
@@ -67,7 +66,6 @@ include 'connect.php';
                     }
                 }
             ?>
-            <option value="CS_City"></option>
         </select>
     </div><br>
 
@@ -85,8 +83,6 @@ include 'connect.php';
                     }
                 }
             ?>
-            <option selected enabled>Choose here</option>
-            <option value="CS_State"></option>
         </select>
     </div><br>
 
@@ -104,32 +100,29 @@ include 'connect.php';
                     }
                 }
             ?>
-            <option selected enabled>Choose here</option>
-            <option value="Zipcode"></option>
         </select>
     </div><br>
 
-    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Flagged">Flagged? </label>
-        <select name="Flagged">
+    <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Flag">Flagged? </label>
+        <select name="Flag">
             <option value="Choose Here">Choose here</option>
             <?php
             include 'connect.php';
             mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT Flagged FROM `POI`", $conn);
+            $query = mysql_query("SELECT DISTINCT Flag FROM `POI`", $conn);
                 if (mysql_num_rows($query)) {
-                    $select= '<select name=\"Flagged\">';
+                    $select= '<select name=\"Flag\">';
                     while ($result = mysql_fetch_array($query)) {
-                        echo '<option value="'.$result['Flagged'].'">'.$result['Flagged'] . '</option>';
+                        echo '<option value="'.$result['Flag'].'">'.$result['Flag'] . '</option>';
                     }
                 }
             ?>
-            <option selected enabled>Choose here</option>
-            <option value="Flagged"></option>
         </select>
     </div><br>
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="DateFlagged">Date Flagged? </label>
         <select name="DateFlagged">
+            <option value="Choose Here">Choose here</option>
             <?php
             include 'connect.php';
             mysql_select_db("cs4400_62", $conn);
@@ -141,8 +134,6 @@ include 'connect.php';
                     }
                 }
             ?>
-            <option selected enabled>Choose here</option>
-            <option value="DateFlagged"></option>
         </select>
     </div><br>
 

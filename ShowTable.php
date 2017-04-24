@@ -1,10 +1,11 @@
 <?php
 include 'connect.php';
+
 $Location= $_POST['Location'];
 $City = $_POST['CS_City'];
 $State = $_POST['CS_State'];
 $Zipcode = $_POST['Zipcode'];
-$Flagged = $_POST['Flagged'];
+$Flagged = $_POST['Flag'];
 $DateFlagged = $_POST['DateFlagged'];
  ?>
 
@@ -35,15 +36,9 @@ $DateFlagged = $_POST['DateFlagged'];
                     include "connect.php";
                     mysql_select_db("cs4400_62", $conn);
                     $first = True;
-                    // $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
-                    // $sql = "SELECT * FROM `POI` WHERE Location='$Location' AND CS_City='$City'";
-                    // echo $Location;
-                    //
-                    // echo $City;
                     $sql = "SELECT * FROM `POI`";
+
                     if ($Location != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "Location: $Location\n";
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE Location='$Location'";
@@ -51,9 +46,9 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Location='$Location'";
                         }
                     }
+
                     if ($City != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "City: $City\n";
+
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE CS_City='$City'";
@@ -61,9 +56,9 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND CS_City='$City'";
                         }
                     }
+
                     if ($State != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "State: $State\n";
+
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE CS_State='$State'";
@@ -71,9 +66,9 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND CS_State='$State'";
                         }
                     }
+
                     if ($Zipcode != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "Zipcode: $Zipcode\n";
+
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE Zipcode='$Zipcode'";
@@ -81,9 +76,9 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Zipcode='$Zipcode'";
                         }
                     }
+
                     if ($Flagged != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "Flagged: $Flagged\n";
+
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE Flag='$Flagged'";
@@ -91,9 +86,9 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Flag='$Flagged'";
                         }
                     }
+
                     if ($DateFlagged != "Choose Here") { //if selected
-                        echo "first: $first\n";
-                        echo "DateFlagged: $DateFlagged\n";
+
                         if ($first) {
                             $first = False;
                             $sql .= " WHERE DateFlagged='$DateFlagged'";
@@ -101,7 +96,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND DateFlagged='$DateFlagged'";
                         }
                     }
-                    echo "SQL: $sql\n";
                     $result = mysql_query($sql, $conn) or trigger_error(mysql_error()." ".$query);
                     if (mysql_num_rows($result) > 0){
                     // output data of each row
@@ -114,7 +108,7 @@ $DateFlagged = $_POST['DateFlagged'];
                         <td><?php echo $rows['Flag']; ?></td>
                         <td><?php echo $rows['DateFlagged']; ?></td>
                         <td align="center"><form action="ViewOnePoi.php" method="POST">
-                            <p style="text-align: center;"><input type="submit" value="View" /> </p>
+                            <p style="text-align: center;"><input type="submit" name="Location" value="<?php echo $rows['Location']; ?>" /> </p>
                         </form></td>
                         </tr>
                         <?php
