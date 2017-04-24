@@ -9,8 +9,9 @@
     <p style="text-align: center;"><input type="submit" value="Filter/Search POI" /> </p>
 </form>
 
-<!-- <form action="Register.php" method="POST"> -->
+<form action="GenerateReport.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="POI Report" /> </p>
-<!-- </form> -->
-
+</form>
+<form action="Home.php" method="POST">
 <p style="text-align: center;"><input type="submit" value="Log Out" /> </p>
+</form>

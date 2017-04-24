@@ -1,6 +1,5 @@
 <?php
 include 'connect.php';
-
  ?>
 
  <head>
@@ -49,11 +48,12 @@ include 'connect.php';
                     }
                 }
             ?>
-            <!-- <option value="Location"></option> -->
+            <option value="Location"></option>
         </select>
     </div><br>
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="CS_City">City: </label>
+
         <select name="CS_City">
             <option value="Choose Here">Choose here</option>
             <?php
@@ -64,12 +64,10 @@ include 'connect.php';
                     $select= '<select name=\"CS_City\">';
                     while ($result = mysql_fetch_array($query)) {
                         echo '<option value="'.$result['CS_City'].'">'.$result['CS_City'] . '</option>';
-
-                        //echo '<option value=\"CS_City\">'.$result['CS_City'] . '</option>';
                     }
                 }
             ?>
-            <!-- <option value="CS_City"></option> -->
+            <option value="CS_City"></option>
         </select>
     </div><br>
 
@@ -84,13 +82,11 @@ include 'connect.php';
                     $select= '<select name=\"CS_State\">';
                     while ($result = mysql_fetch_array($query)) {
                         echo '<option value="'.$result['CS_State'].'">'.$result['CS_State'] . '</option>';
-
-                        // echo '<option value=\"CS_State\">'.$result['CS_State'] . '</option>';
                     }
                 }
             ?>
-            <!-- <option selected enabled>Choose here</option> -->
-            <!-- <option value="CS_State"></option> -->
+            <option selected enabled>Choose here</option>
+            <option value="CS_State"></option>
         </select>
     </div><br>
 
@@ -104,49 +100,49 @@ include 'connect.php';
                 if (mysql_num_rows($query)) {
                     $select= '<select name=\"Zipcode\">';
                     while ($result = mysql_fetch_array($query)) {
-                        echo '<option value="'.$result['Zipcode'].'">'.$result['Zipcode'] . '</option>';
+                        echo '<option value="'.$result['Zipcode'].'"">'.$result['Zipcode'] . '</option>';
                     }
                 }
             ?>
-            <!-- <option selected enabled>Choose here</option> -->
-            <!-- <option value="Zipcode"></option> -->
+            <option selected enabled>Choose here</option>
+            <option value="Zipcode"></option>
         </select>
     </div><br>
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="Flagged">Flagged? </label>
-        <select name="Flag">
+        <select name="Flagged">
             <option value="Choose Here">Choose here</option>
             <?php
             include 'connect.php';
             mysql_select_db("cs4400_62", $conn);
-            $query = mysql_query("SELECT DISTINCT Flag FROM `POI`", $conn);
+            $query = mysql_query("SELECT DISTINCT Flagged FROM `POI`", $conn);
                 if (mysql_num_rows($query)) {
-                    $select= '<select name=\"Flag\">';
+                    $select= '<select name=\"Flagged\">';
                     while ($result = mysql_fetch_array($query)) {
-                        echo '<option value="'.$result['Flag'].'">'.$result['Flag'] . '</option>';
+                        echo '<option value="'.$result['Flagged'].'">'.$result['Flagged'] . '</option>';
                     }
                 }
             ?>
-            <!-- <option value="Flag"></option> -->
+            <option selected enabled>Choose here</option>
+            <option value="Flagged"></option>
         </select>
     </div><br>
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="DateFlagged">Date Flagged? </label>
         <select name="DateFlagged">
-            <option value="Choose Here">Choose here</option>
-                <?php
-                include 'connect.php';
-                mysql_select_db("cs4400_62", $conn);
-                $query = mysql_query("SELECT DISTINCT DateFlagged FROM `POI`", $conn);
-                    if (mysql_num_rows($query)) {
-                        $select= '<select name=\"DateFlagged\">';
-                        while ($result = mysql_fetch_array($query)) {
-                            echo '<option value="'.$result['DateFlagged'].'">'.$result['DateFlagged'].'</option>';
-                        }
+            <?php
+            include 'connect.php';
+            mysql_select_db("cs4400_62", $conn);
+            $query = mysql_query("SELECT DISTINCT DateFlagged FROM `POI`", $conn);
+                if (mysql_num_rows($query)) {
+                    $select= '<select name=\"DateFlagged\">';
+                    while ($result = mysql_fetch_array($query)) {
+                        echo '<option value="'.$result['DateFlagged'].'">'.$result['DateFlagged'] . '</option>';
                     }
-                ?>
-            <!-- <option selected enabled>Choose here</option> -->
-            <!-- <option value="DateFlagged"></option> -->
+                }
+            ?>
+            <option selected enabled>Choose here</option>
+            <option value="DateFlagged"></option>
         </select>
     </div><br>
 

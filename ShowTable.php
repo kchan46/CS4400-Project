@@ -1,11 +1,10 @@
 <?php
 include 'connect.php';
-
 $Location= $_POST['Location'];
 $City = $_POST['CS_City'];
 $State = $_POST['CS_State'];
 $Zipcode = $_POST['Zipcode'];
-$Flagged = $_POST['Flag'];
+$Flagged = $_POST['Flagged'];
 $DateFlagged = $_POST['DateFlagged'];
  ?>
 
@@ -37,13 +36,11 @@ $DateFlagged = $_POST['DateFlagged'];
                     mysql_select_db("cs4400_62", $conn);
                     $first = True;
                     // $sql = "SELECT * FROM `POI` WHERE Location='$Location'";
-
                     // $sql = "SELECT * FROM `POI` WHERE Location='$Location' AND CS_City='$City'";
                     // echo $Location;
                     //
                     // echo $City;
                     $sql = "SELECT * FROM `POI`";
-
                     if ($Location != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "Location: $Location\n";
@@ -54,7 +51,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Location='$Location'";
                         }
                     }
-
                     if ($City != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "City: $City\n";
@@ -65,7 +61,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND CS_City='$City'";
                         }
                     }
-
                     if ($State != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "State: $State\n";
@@ -76,7 +71,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND CS_State='$State'";
                         }
                     }
-
                     if ($Zipcode != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "Zipcode: $Zipcode\n";
@@ -87,7 +81,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Zipcode='$Zipcode'";
                         }
                     }
-
                     if ($Flagged != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "Flagged: $Flagged\n";
@@ -98,7 +91,6 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND Flag='$Flagged'";
                         }
                     }
-
                     if ($DateFlagged != "Choose Here") { //if selected
                         echo "first: $first\n";
                         echo "DateFlagged: $DateFlagged\n";
@@ -109,9 +101,7 @@ $DateFlagged = $_POST['DateFlagged'];
                             $sql .= " AND DateFlagged='$DateFlagged'";
                         }
                     }
-
                     echo "SQL: $sql\n";
-
                     $result = mysql_query($sql, $conn) or trigger_error(mysql_error()." ".$query);
                     if (mysql_num_rows($result) > 0){
                     // output data of each row
@@ -125,7 +115,6 @@ $DateFlagged = $_POST['DateFlagged'];
                         <td><?php echo $rows['DateFlagged']; ?></td>
                         <td align="center"><form action="ViewOnePoi.php" method="POST">
                             <p style="text-align: center;"><input type="submit" value="View" /> </p>
-                            <?php echo '<input type="hidden" name="Location" value="' . $Location . '"/>'; ?>
                         </form></td>
                         </tr>
                         <?php

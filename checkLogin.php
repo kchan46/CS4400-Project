@@ -48,7 +48,7 @@ $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username'", $conn) o
 
               //check if user is city scientist. if so, redirect to add data point page
                 mysql_select_db("cs4400_62", $conn);
-                $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username' AND Password='$Password' AND UserType='City Official' AND Approved = True", $conn) or trigger_error(mysql_error()." ".$query);
+                $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username' AND Password='$Password' AND UserType='City Official'", $conn) or trigger_error(mysql_error()." ".$query);
                 if (mysql_num_rows($query) > 0) {
                     //the password matches so login is successful. now check the usertype to know which GUI to redirect to
                     header("Location:http://localhost/CityOfficial.php");

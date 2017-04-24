@@ -29,7 +29,8 @@ $query = mysql_query("SELECT * FROM `USER` WHERE Username='$Username'", $conn) o
     }
 
 mysql_select_db("cs4400_62", $conn);
-$query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email' AND Email LIKE '%_@__%.__%'", $conn) or trigger_error(mysql_error()." ".$query);
+$query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email'", $conn) or trigger_error(mysql_error()." ".$query);
+
     if (mysql_num_rows($query) != 0) {
           header("Location:http://localhost/RegisterEmailExists.php");
           exit;
@@ -49,7 +50,7 @@ $query = mysql_query("SELECT Email FROM `USER` WHERE Email='$Email' AND Email LI
 
         if (mysql_num_rows($sql) > 0) {
             $query = mysql_query("INSERT INTO `USER` VALUES ('$Username', '$Email', '$Password', '$UserType')", $conn) or trigger_error(mysql_error()." ".$query);
-            $query = mysql_query("INSERT INTO `CITYOFFICAL`(`Username`, `Title`, `Approved`, `CS_City`, `CS_State`) VALUES ('$Username', '$Title', '$City', '$State')", $conn) or trigger_error(mysql_error()." ".$query);
+            $query = mysql_query("INSERT INTO `CITYOFFICIAL`(`Username`, `Title`, `Approved`, `CS_City`, `CS_State`) VALUES ('$Username', '$Title', NULL, '$City', '$State')", $conn) or trigger_error(mysql_error()." ".$query);
             header("Location:http://localhost/CityOfficial.php");
             exit;
         } else {

@@ -6,7 +6,7 @@ include 'connect.php';
 
 <h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>Add a new location</strong></span></h1>
 
-<form action="checkLocation.php" method="POST">
+<form action="checklocation.php" method="POST">
 
     <div class="form-group" style="text-align: center;"><label class="control-label" for="Location">POI Location Name: </label>
         <div class="yo" style="text-align: center;"><input id="Location" class="form-control input-md" name="Location" required="" type="text" placeholder="" /></div>

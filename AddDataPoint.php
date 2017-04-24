@@ -30,11 +30,10 @@ include 'connect.php';
 
 <h1 style="text-align: center;"><span style="background-color: #ffffff;"><strong>Add New Datapoint</strong></span></h1> <!-- Text input-->
 
-<form action="SubmittedDataPoint.php" method="POST">
+<form action="checkDataPoint.php" method="POST">
 
     <div class="form-group" style="text-align: center;"><label class="col-md-4 control-label" for="POI">POI Location Name: </label>
         <select name="POI">
-            <option value="Choose Here">Choose here</option>
             <?php
                 include 'connect.php';
                 //trying to populate dropdown of cities and states
@@ -47,7 +46,7 @@ include 'connect.php';
                         }
                     }
                 ?>
-            <!-- <option value="POI"></option> -->
+            <option value="POI"></option>
         </select>
         <a href="AddNewLocation.php">Add a new location</a>
     </div><br>
@@ -69,10 +68,10 @@ include 'connect.php';
     <div class="form-group" style="text-align: center;"><label class="control-label" for="DataValue">Data Value: </label>
         <div class="yo" style="text-align: center;"><input id="DataValue" class="form-control input-md" name="DataValue" required="" type="number" placeholder="" /></div>
     </div><br>
-
+    <p style="text-align: center;"><input type="submit" value="Submit" /> </p>
     </form>
 
-<p style="text-align: center;"><input type="submit" value="Submit" /> </p>
+
 
 <form action="Home.php" method="POST">
     <p style="text-align: center;"><input type="submit" value="Log Out" /> </p>
