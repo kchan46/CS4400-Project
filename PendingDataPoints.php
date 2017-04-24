@@ -32,7 +32,7 @@
                     // echo $City;
                     $sql = "SELECT * FROM `DATAPOINT` WHERE Accepted IS NULL";
 
-
+                        session_start();
 
                     $result = mysql_query($sql, $conn) or trigger_error(mysql_error()." ".$query);
                     if (mysql_num_rows($result) > 0){
@@ -40,11 +40,15 @@
                     while($rows = mysql_fetch_array($result)){ ?>
                         <td align="center">
                             <p style="text-align: center;"> <input name="Selected[]" type="checkbox" value="<?php echo $rows['POI_LOCATION'] ; ?>" /> </p>
+                            <p style="text-align: center;"> <input name="Selected2[]" type="checkbox" value="<?php echo $rows['DATETIME'] ; ?>" /> </p>
                         </form></td>
+
                         <td><?php echo $rows['POI_LOCATION']; ?></td>
                         <td><?php echo $rows['DATA_TYPE']; ?></td>
                         <td><?php echo $rows['Data_Value']; ?></td>
                         <td><?php echo $rows['DATETIME']; ?></td>
+
+
 
 
 
@@ -64,7 +68,7 @@
 </html>
 
 
-    <p style="text-align: center;"><input type="submit" value="Accept" /> </p>
+    <p style="text-align: center;"><input type="submit" name="accept" value="Accept" /> </p>
     <p style="text-align: center;"><input type="submit" value="Reject" /> </p>
 </form>
 
